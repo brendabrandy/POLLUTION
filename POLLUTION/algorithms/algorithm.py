@@ -50,7 +50,8 @@ for date in date_array:
     for pollutant in pollutant_array:
         my_list = matrix(df_main[df_main['date'] = date],date,pollutant)
         for index in my_list:
-             = my_list[index[0]]
+            label = 'source_'+ pollutant
+            df.loc[my_list[index][1],label]= my_list[index][0]
 
 def matrix(df,date,pollutant):
     df = df.dropna(subset=[pollutant],axis = 0)
@@ -85,7 +86,7 @@ def matrix(df,date,pollutant):
         new_series = pd.series(data = A[a], index = df.state)
         grouppy = new_series.groupby(groupby.index).sum()
         grouppy_dict = grouppy.to_dict()
-        listty = [grouppy_dict,df.loc[a,'lon'],df.loc[a.'lat']]
+        listty = [grouppy_dict,df.loc[a,'index']]
         my_list.append(listty)
 
     #X is the solution, i.e. the concentration of sources, of different places
